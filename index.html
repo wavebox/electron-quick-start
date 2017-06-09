@@ -10,6 +10,14 @@
     We are using Node.js <script>document.write(process.versions.node)</script>,
     Chromium <script>document.write(process.versions.chrome)</script>,
     and Electron <script>document.write(process.versions.electron)</script>.
+
+    <webview style="height:800px;" partition="persist:test1" src="https://mail.google.com/?ibxr=0" webpreferences="contextIsolation=yes, nativeWindowOpen=yes" allowpopups></webview>
+
+    <script>
+      document.querySelector('webview').addEventListener('crashed', function (e, a, b) {
+        console.log(e,a,b)
+      }, false)
+    </script>
   </body>
 
   <script>
