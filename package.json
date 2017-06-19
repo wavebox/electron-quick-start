@@ -4,6 +4,7 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
+    "prestart": "electron-rebuild -v 1.7.3 -t prod,optional",
     "start": "electron ."
   },
   "repository": "https://github.com/electron/electron-quick-start",
@@ -17,6 +18,10 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "~1.6.2"
+    "electron": "1.7.3",
+    "electron-rebuild": "^1.5.11"
+  },
+  "dependencies": {
+    "spellchecker": "^3.3.1"
   }
 }
