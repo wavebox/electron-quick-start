@@ -11,7 +11,63 @@ const url = require('url')
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
 
+
 function createWindow () {
+
+  const showFix = Array.from(process.argv).findIndex((a) => a === '--withfix') !== -1
+
+  // BUG
+  if (!showFix) {
+    let c = 0
+    setInterval(() => {
+      for (var i = 0; i < 100; i++) {
+        const a = new electron.Menu.buildFromTemplate([
+          {
+            label: 'Application',
+            submenu: [
+              {
+                label: 'About',
+                click: () => {console.log('About')}
+              }
+            ]
+          }
+        ])
+        a.destroy()
+      }
+      c++
+      if (c % 100) {
+        console.log(`${Math.round((process.getProcessMemoryInfo().workingSetSize || 0) / 1024)} MB`)
+      }
+    }, 10)
+  } else {
+    let c = 0
+    setInterval(() => {
+      for (var i = 0; i < 100; i++) {
+        const a = new electron.Menu.buildFromTemplate([
+          {
+            label: 'Application',
+            submenu: [
+              {
+                label: 'About',
+                click: () => {console.log('About')}
+              }
+            ]
+          }
+        ])
+        a.items[0].submenu.destroy()
+        a.destroy()
+      }
+      c++
+      if (c % 100) {
+        console.log(`${Math.round((process.getProcessMemoryInfo().workingSetSize || 0) / 1024)} MB`)
+      }
+    }, 10)
+  }
+
+
+
+
+
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 800, height: 600})
 
