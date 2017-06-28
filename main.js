@@ -1,6 +1,7 @@
 const electron = require('electron')
 // Module to control application life.
 const app = electron.app
+
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
@@ -10,6 +11,18 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+
+console.log("A1")
+const singleAppQuit = app.makeSingleInstance(function (commandLine, workingDirectory) {
+  console.log("A2")
+  if (mainWindow) {
+    mainWindow.focus()
+  }
+  return true
+})
+console.log("Quit?", singleAppQuit)
+if (singleAppQuit) { app.quit(); return }
+
 
 function createWindow () {
   // Create the browser window.
