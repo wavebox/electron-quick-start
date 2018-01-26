@@ -16,6 +16,9 @@
       <button id="send_native">Send Native</button>
     </div>
 
+    <webview src="https://github.com" preload="./preload.js"></webview>
+    <webview src="https://github.com" preload="./preload.js"></webview>
+
     <script>
       document.getElementById("send_electron").addEventListener('click', function (evt) {
         evt.preventDefault()
@@ -29,16 +32,6 @@
       }, false)
       // You can also require other files to run in this process
       require('./renderer.js')
-
-      const electron = require('electron')
-      const payload = {}
-      for (var i = 0; i < 10000; i++) {
-        payload[`${i}:${Math.random()}`] = new Date().getTime()
-      }
-      setInterval(() => {
-        console.log('Send')
-        electron.ipcRenderer.sendToHost('TEST', payload)
-      }, 300)
     </script>
   </body>
 </html>
