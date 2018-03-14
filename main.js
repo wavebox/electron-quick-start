@@ -32,6 +32,29 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate([
+    {
+      label: 'Test',
+      submenu: [
+        {
+          label: 'Test 1',
+          accelerator: 'Cmd+Alt+H',
+          click: () => console.log("Got test 1")
+        },
+         {
+          label: 'Test 2',
+          accelerator: 'Cmd+Alt+J',
+          click: () => console.log("Got test 2")
+        },
+        {
+          label: 'Dev tools',
+          accelerator: 'CmdOrCtrl+Alt+I',
+          click: () => mainWindow.webContents.openDevTools()
+        }
+      ]
+    }
+  ]))
 }
 
 // This method will be called when Electron has finished
